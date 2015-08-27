@@ -69,8 +69,10 @@ log() {
     # Default level to "info"
     [[ -z ${log_level} ]] && log_level="INFO";
     [[ -z ${log_color} ]] && log_color="${LOG_INFO_COLOR}";
+    
+    local time_stamp="$(date +"%Y-%m-%d %H:%M:%S %Z")"
 
-    echo -e "${log_color}[$(date +"%Y-%m-%d %H:%M:%S %Z")] [${log_level}] ${log_text} ${LOG_DEFAULT_COLOR}";
+    printf "${log_color}%s  %-7s: %s${LOG_DEFAULT_COLOR}\n" "$time_stamp" "$log_level" "$log_text";
     return 0;
 }
 
